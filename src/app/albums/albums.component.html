@@ -1,0 +1,21 @@
+<ng-container *ngIf="vm$ | async as vm">
+  <button (click)="fetch()">Fetch Albums</button>
+  <ng-container *ngIf="vm.status === 'SUCCESS'; else loading">
+    <count [count]="vm.totalCount"></count>
+    <ng-container *ngFor="let album of vm.albums">
+      <pre>ID: {{ album.id }}</pre>
+      <pre>UserId: {{ album.userId }}</pre>
+      <pre>title: {{ album.title }}</pre>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="vm.status === 'ERROR'">
+    <h2>Something wrong</h2>
+  </ng-container>
+</ng-container>
+
+
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>
+
+

@@ -1,0 +1,16 @@
+<ng-container *ngIf="vm$ | async as vm">
+<!--  {{vm | json}}-->
+  <button (click)="fetch()">Fetch Users</button>
+  <ng-container *ngIf="!vm.loading; else loading">
+    <count [count]="vm.totalCount"></count>
+    <ng-container *ngFor="let user of vm.users">
+      <p>Name: {{ user.name }}</p>
+      <p>Height: {{ user.height }}</p>
+      <p>Gender: {{ user.gender }}</p>
+      <hr>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<ng-template #loading>
+  <div>Loading...</div>
+</ng-template>
